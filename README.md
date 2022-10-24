@@ -40,6 +40,9 @@
 .
 ```
 
+> Example
+> -
+![Example image](data/demo.png)
 
 ## This project is made from the collective efforts of 
 - [20BCS014 Arshmah Saeed](https://github.com/gitarshmah)
