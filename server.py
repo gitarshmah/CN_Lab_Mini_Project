@@ -39,11 +39,11 @@ def recieve_message(client_socket):
             message = client_socket.recv(BYTESIZE).decode(ENCODER)
             clint_id = message[1:4]
             if clint_id == "all":
-                message = f">> {name}: {message} ".encode(ENCODER)
+                message = f">> {name}: {message[5:]} ".encode(ENCODER)
                 broadcast_message(message)
             else:
                 client_index = int(message[2]) - 1
-                message = f">> {name}: {message} ".encode(ENCODER)
+                message = f">> {name}: {message[4:]} ".encode(ENCODER)
                 private_message(message, client_index)
 
             # message = f">> {name}: {message} ".encode(ENCODER)
