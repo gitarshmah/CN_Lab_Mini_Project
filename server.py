@@ -70,7 +70,7 @@ def connect_client():
     while True:
         # Accept any incoming client connection
         client_socket, client_address = server_socket.accept()
-        print(f"Connected with {client_address}...")
+        print(f"Connected with {client_address}... \n")
 
         # Send a NAME flag to prompt the client for their name
         client_socket.send("NAME".encode(ENCODER))
@@ -82,8 +82,8 @@ def connect_client():
 
         # Update the server, individual client, and ALL clients
         print(f"Name of new client is {client_name}\n")  # server
-        client_socket.send(f"{client_name}, you have connected to the server!".encode(ENCODER))  # Individual client
-        broadcast_message(f"{client_name} has joined the chat!".encode(ENCODER))
+        client_socket.send(f"{client_name}, you have connected to the server!\n".encode(ENCODER))  # Individual client
+        broadcast_message(f"\n{client_name} has joined the chat!".encode(ENCODER))
 
         # Now that a new client has connected, start a thread
         recieve_thread = threading.Thread(target=recieve_message, args=(client_socket,))
