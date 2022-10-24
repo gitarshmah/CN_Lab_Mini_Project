@@ -33,7 +33,7 @@ def recieve_message():
                 print(message)
         except:
             # An error occurred, close the connection
-            print("An error occured...")
+            print("An error occurred...")
             client_socket.close()
             break
 

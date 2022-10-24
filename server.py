@@ -22,6 +22,11 @@ def broadcast_message(message):
         client_socket.send(message)
 
 
+def private_message(message, client__index):
+    client_socket = client_socket_list[client__index]
+    client_socket.send(message)
+
+
 def recieve_message(client_socket):
     """Recieve an incoming message from a specific client and forward the message to be broadcast"""
     while True:
@@ -32,8 +37,17 @@ def recieve_message(client_socket):
 
             # Recieve message from the client
             message = client_socket.recv(BYTESIZE).decode(ENCODER)
-            message = f"\033[1;92m\t{name}: {message}\033[0m".encode(ENCODER)
-            broadcast_message(message)
+            clint_id = message[1:4]
+            if clint_id == "all":
+                message = f">> {name}: {message} ".encode(ENCODER)
+                broadcast_message(message)
+            else:
+                client_index = int(message[2]) - 1
+                message = f">> {name}: {message} ".encode(ENCODER)
+                private_message(message, client_index)
+
+            # message = f">> {name}: {message} ".encode(ENCODER)
+            # broadcast_message(message)
         except:
             # Find the index of the client socket in our list
             index = client_socket_list.index(client_socket)
